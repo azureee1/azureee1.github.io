@@ -1,0 +1,226 @@
+/* ==========================================================================
+   FIQIH SANTOSO — CYBER TECH PORTFOLIO
+   Cyberpunk Keyframe Animations & Micro-Interactions
+   ========================================================================== */
+
+/* Glitch Effect on Text */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.glitch-text:hover::before {
+  left: -2px;
+  text-shadow: 2px 0 var(--neon-pink);
+  clip-path: polygon(0 20%, 100% 20%, 100% 45%, 0 45%);
+  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch-text:hover::after {
+  left: 2px;
+  text-shadow: -2px 0 var(--neon-cyan);
+  clip-path: polygon(0 60%, 100% 60%, 100% 85%, 0 85%);
+  animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+  0% { clip-path: inset(40% 0 61% 0); transform: skew(0.3deg); }
+  20% { clip-path: inset(92% 0 1% 0); transform: skew(-0.8deg); }
+  40% { clip-path: inset(10% 0 80% 0); transform: skew(0.5deg); }
+  60% { clip-path: inset(50% 0 30% 0); transform: skew(-0.3deg); }
+  80% { clip-path: inset(25% 0 58% 0); transform: skew(0.8deg); }
+  100% { clip-path: inset(70% 0 15% 0); transform: skew(0deg); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip-path: inset(25% 0 58% 0); transform: skew(-0.5deg); }
+  20% { clip-path: inset(70% 0 15% 0); transform: skew(0.4deg); }
+  40% { clip-path: inset(40% 0 43% 0); transform: skew(-0.2deg); }
+  60% { clip-path: inset(80% 0 5% 0); transform: skew(0.6deg); }
+  80% { clip-path: inset(15% 0 70% 0); transform: skew(-0.7deg); }
+  100% { clip-path: inset(55% 0 20% 0); transform: skew(0deg); }
+}
+
+/* Digital Scan Laser on Avatar */
+.scan-laser {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--neon-cyan), var(--neon-green), transparent);
+  box-shadow: 0 0 15px var(--neon-cyan), 0 0 25px var(--neon-green);
+  opacity: 0.85;
+  z-index: 5;
+  animation: scan-move 3.5s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes scan-move {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    top: 98%;
+    opacity: 0;
+  }
+}
+
+/* Concentric HUD Rotating Rings */
+.hud-ring-1 {
+  animation: rotate-clockwise 22s linear infinite;
+}
+
+.hud-ring-2 {
+  animation: rotate-counter-clockwise 16s linear infinite;
+}
+
+.hud-ring-3 {
+  animation: rotate-clockwise 30s linear infinite;
+}
+
+@keyframes rotate-clockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotate-counter-clockwise {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+/* Radar Sweep Effect */
+.radar-sweep {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(0, 243, 255, 0.25) 0deg, transparent 60deg, transparent 360deg);
+  animation: radar-spin 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes radar-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Cyber Terminal Typing Cursor */
+.terminal-cursor {
+  display: inline-block;
+  width: 9px;
+  height: 1.15em;
+  background-color: var(--neon-cyan);
+  vertical-align: -0.15em;
+  margin-left: 3px;
+  box-shadow: var(--glow-cyan-sm);
+  animation: terminal-blink 1s steps(2, start) infinite;
+}
+
+@keyframes terminal-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Neon Glow Pulse Animation */
+@keyframes neon-glow-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(0, 243, 255, 0.8)) drop-shadow(0 0 35px rgba(0, 255, 102, 0.4));
+  }
+}
+
+.neon-pulse {
+  animation: neon-glow-pulse 3s ease-in-out infinite;
+}
+
+/* Floating Elements Physics */
+@keyframes cyber-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.5deg);
+  }
+}
+
+.float-slow {
+  animation: cyber-float 5s ease-in-out infinite;
+}
+
+.float-delayed {
+  animation: cyber-float 6s ease-in-out 1.5s infinite;
+}
+
+/* Scroll Reveal States */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-init.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Accessibility: Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-init, .reveal-left, .reveal-right {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
